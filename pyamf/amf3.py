@@ -1706,7 +1706,7 @@ class Encoder(codec.Encoder):
         self._writeInteger(len(n) << 1 | REFERENCE_BIT)
         self.stream.write_uchar(0x01 if n.weak_keys else 0x00)
 
-        for key, value in n.iteritems():
+        for key, value in n.items():
             self.writeElement(key)
             self.writeElement(value)
 
