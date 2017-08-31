@@ -1049,7 +1049,7 @@ class Decoder(codec.Decoder):
         result.weak_keys = bool(weak_keys)
 
         # Read key-value pairs
-        for i in xrange(length):
+        for i in range(length):
             key = self.readElement()
             value = self.readElement()
             result[key] = value
@@ -1252,7 +1252,7 @@ class Decoder(codec.Decoder):
             obj.classname = self.readString()
 
         num_items = ref >> 1
-        for i in xrange(num_items):
+        for i in range(num_items):
             obj.append(obj.reader(self)())
 
         return obj
