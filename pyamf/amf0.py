@@ -503,6 +503,12 @@ class Encoder(codec.Encoder):
         """
         Write a string of bytes to the data stream.
         """
+        if not isinstance(s, bytes):
+            raise pyamf.EncodeError(
+                'Please use bytes type '
+                '(got:%r)' % (s, )
+            )
+
         l = len(s)
 
         if l > 0xffff:
