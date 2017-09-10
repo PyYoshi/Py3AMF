@@ -1694,7 +1694,8 @@ class Encoder(codec.Encoder):
         self.stream.write_uchar(1 if n.fixed else 0)
 
         if isinstance(n, ObjectVector):
-            self.writeString(n.classname)
+            classname_bytes = self.context.getBytesForString(n.classname)
+            self.serialiseBytes(classname_bytes)
 
         for item in n:
             n.writer(self)(item)
