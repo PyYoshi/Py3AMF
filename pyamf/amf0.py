@@ -572,21 +572,7 @@ class Encoder(codec.Encoder):
         self.context.addObject(o)
         self.writeType(TYPE_MIXEDARRAY)
 
-        # TODO: optimise this
-        # work out the highest integer index
-        try:
-            # list comprehensions to save the day
-            max_index = max([
-                y[0] for y in o.items()
-                if isinstance(y[0], int)
-            ])
-
-            if max_index < 0:
-                max_index = 0
-        except ValueError:
-            max_index = 0
-
-        self.stream.write_ulong(max_index)
+        self.stream.write_ulong(len(o))
 
         self._writeDict(o)
         self._writeEndObject()
